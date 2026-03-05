@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Dark Student Profile</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme Colors */
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --button-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 450px; 
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+            border-color: var(--accent-color);
+        }
+
+        /* Profile Picture Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+
+        .image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            padding: 5px;
+            background: var(--button-gradient);
+            position: relative;
+            animation: float 4s ease-in-out infinite, pulse-border 2s infinite;
+        }
+
+        .profile-img-wrap {
+            width: 100%;
+            height: 100%;
+            background: #334155;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-card:hover .profile-img-wrap img {
+            transform: scale(1.1);
+        }
+
+        .student-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .student-stream {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 50px;
+        }
+
+        .student-bio {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--button-gradient);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        #like-count {
+            font-weight: normal;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="image-container">
+            <div class="profile-img-wrap">
+                <!-- Sample Male Profile Picture -->
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Student Profile">
+            </div>
+        </div>
+
+        <h1 class="student-name">Dineth Kaveeshwara</h1>
+        <span class="student-stream">Computer Science & IT</span>
+        
+        <p class="student-bio">
+            Passionate software developer focusing on building modern web applications. 
+            I love exploring new technologies and solving complex problems with clean, efficient code.
+        </p>
+
+        <div class="actions">
+            <button class="btn btn-primary" id="like-btn">
+                <span>❤️</span> Like <span id="like-count">0</span>
+            </button>
+            <button class="btn btn-outline" id="theme-btn">
+                <span>✨</span> Glow
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const likeBtn = document.getElementById('like-btn');
+        const likeCountDisplay = document.getElementById('like-count');
+        const themeBtn = document.getElementById('theme-btn');
+        const card = document.querySelector('.profile-card');
+        
+        let likes = 0;
+
+        likeBtn.addEventListener('click', () => {
+            likes++;
+            likeCountDisplay.textContent = likes;
+            likeBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                likeBtn.style.transform = 'scale(1.05)';
+            }, 100);
+        });
+
+        themeBtn.addEventListener('click', () => {
+            const colors = ['#38bdf8', '#f43f5e', '#10b981', '#a855f7', '#fbbf24'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.documentElement.style.setProperty('--accent-color', randomColor);
+            card.style.borderColor = randomColor;
+            card.style.boxShadow = `0 25px 50px -12px ${randomColor}33`;
+            
+            // Sync image border glow
+            const imgContainer = document.querySelector('.image-container');
+            imgContainer.style.boxShadow = `0 0 20px ${randomColor}66`;
+        });
+    </script>
+</body>
+</html>
